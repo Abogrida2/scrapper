@@ -1,1 +1,0 @@
-web: cd /opt/render/project/src && python app.py
