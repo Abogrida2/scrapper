@@ -1,0 +1,827 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #4a90e2 0%, #9013fe 100%);
+    min-height: 100vh;
+    color: #222;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 50px;
+    color: #333;
+}
+
+header h1 {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+}
+
+header h1 i {
+    color: #e62117;
+    margin-left: 12px;
+}
+
+header p {
+    font-size: 1.3rem;
+    opacity: 0.85;
+}
+
+.input-section {
+    background: #f9f9f9;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+    margin-bottom: 40px;
+}
+
+.url-input {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.url-input input {
+    flex: 1;
+    min-width: 320px;
+    padding: 18px 25px;
+    border: 2px solid #d1d5db;
+    border-radius: 15px;
+    font-size: 18px;
+    transition: all 0.4s ease;
+}
+
+.url-input input:focus {
+    outline: none;
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 4px rgba(74, 144, 226, 0.15);
+}
+
+.url-input button {
+    padding: 18px 30px;
+    background: linear-gradient(45deg, #4a90e2, #9013fe);
+    color: white;
+    border: none;
+    border-radius: 15px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    white-space: nowrap;
+}
+
+.url-input button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(74, 144, 226, 0.3);
+}
+
+.url-input button i {
+    margin-left: 10px;
+}
+
+.loading {
+    text-align: center;
+    padding: 50px;
+    background: #f9f9f9;
+    border-radius: 20px;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+    margin-bottom: 40px;
+}
+
+.spinner {
+    width: 60px;
+    height: 60px;
+    border: 5px solid #e0e0e0;
+    border-top: 5px solid #4a90e2;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 25px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.error {
+    background: #ffe6e6;
+    color: #cc0000;
+    padding: 25px;
+    border-radius: 15px;
+    border: 1px solid #ff9999;
+    margin-bottom: 40px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.success {
+    background: #d4edda;
+    color: #155724;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #c3e6cb;
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.video-info {
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+    overflow: hidden;
+}
+
+.video-header {
+    display: flex;
+    gap: 25px;
+    padding: 40px;
+    border-bottom: 1px solid #eee;
+    flex-wrap: wrap;
+}
+
+.video-header img {
+    width: 220px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.video-details h3 {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+    color: #222;
+}
+
+.video-details p {
+    color: #555;
+    font-size: 1.2rem;
+}
+
+.formats-section {
+    padding: 40px;
+}
+
+.formats-section h4 {
+    margin-bottom: 25px;
+    color: #222;
+    font-size: 1.4rem;
+}
+
+.formats-list {
+    display: grid;
+    gap: 20px;
+}
+
+.format-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px;
+    background: #f0f0f0;
+    border-radius: 15px;
+    border: 1px solid #ddd;
+    transition: all 0.4s ease;
+}
+
+.format-item:hover {
+    background: #e0e0e0;
+    transform: translateX(8px);
+}
+
+.format-info {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+
+.quality {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: white;
+}
+
+.quality-hd {
+    background: #28a745; /* أخضر للجودات العالية */
+}
+
+.quality-sd {
+    background: #ffc107; /* أصفر للجودات المتوسطة */
+    color: #333;
+}
+
+.quality-low {
+    background: #dc3545; /* أحمر للجودات المنخفضة */
+}
+
+.quality-audio {
+    background: #6f42c1; /* بنفسجي للصوت */
+}
+
+.quality-unknown {
+    background: #6c757d; /* رمادي للمجهولة */
+}
+
+.extension {
+    background: #28a745;
+    color: white;
+    padding: 7px 15px;
+    border-radius: 25px;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.size {
+    color: #555;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.download-btn {
+    background: linear-gradient(45deg, #28a745, #20c997);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.4s ease;
+}
+
+.download-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(32, 201, 151, 0.4);
+}
+
+.download-btn i {
+    margin-left: 12px;
+}
+
+footer {
+    text-align: center;
+    margin-top: 50px;
+    color: #555;
+    opacity: 0.9;
+    font-size: 1rem;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 25px;
+    }
+    
+    header h1 {
+        font-size: 2.5rem;
+    }
+    
+    .url-input {
+        flex-direction: column;
+    }
+    
+    .url-input input {
+        min-width: auto;
+    }
+    
+    .video-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .video-header img {
+        width: 100%;
+        max-width: 350px;
+        height: auto;
+    }
+    
+    .format-item {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+    
+    .format-info {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .input-section {
+        padding: 30px;
+    }
+    
+    .video-header {
+        padding: 30px;
+    }
+    
+    .formats-section {
+        padding: 30px;
+    }
+}
+
+/* Loading Animations */
+
+/* Truck Loading Animation */
+.loader .truckWrapper {
+  width: 200px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+  justify-content: flex-end;
+  overflow-x: hidden;
+}
+
+.loader .truckBody {
+  width: 130px;
+  height: fit-content;
+  margin-bottom: 6px;
+  animation: motion 1s linear infinite;
+}
+
+@keyframes motion {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(3px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.loader .truckTires {
+  width: 130px;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 10px 0px 15px;
+  position: absolute;
+  bottom: 0;
+}
+
+.loader .truckTires svg {
+  width: 24px;
+}
+
+.loader .road {
+  width: 100%;
+  height: 1.5px;
+  background-color: #282828;
+  position: relative;
+  bottom: 0;
+  align-self: flex-end;
+  border-radius: 3px;
+}
+
+.loader .road::before {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 100%;
+  background-color: #282828;
+  right: -50%;
+  border-radius: 3px;
+  animation: roadAnimation 1.4s linear infinite;
+  border-left: 10px solid white;
+}
+
+.loader .road::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 100%;
+  background-color: #282828;
+  right: -65%;
+  border-radius: 3px;
+  animation: roadAnimation 1.4s linear infinite;
+  border-left: 4px solid white;
+}
+
+.loader .lampPost {
+  position: absolute;
+  bottom: 0;
+  right: -90%;
+  height: 90px;
+  animation: roadAnimation 1.4s linear infinite;
+}
+
+@keyframes roadAnimation {
+  0% {
+    transform: translateX(0px);
+  }
+  100% {
+    transform: translateX(-350px);
+  }
+}
+
+/* Hide old spinner */
+.spinner {
+    display: none;
+}
+
+.additional-info {
+    background: #17a2b8;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-weight: 500;
+    font-size: 0.8rem;
+}
+
+/* Simple Download Loader */
+.simple-download-loader {
+    text-align: center;
+    padding: 40px;
+}
+
+.download-spinner {
+    width: 60px;
+    height: 60px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #28a745;
+    border-radius: 50%;
+    animation: downloadSpin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+@keyframes downloadSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive Design for Mobile */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px 15px;
+        max-width: 100%;
+    }
+    
+    .header h1 {
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+    }
+    
+    .header p {
+        font-size: 1rem;
+        margin-bottom: 20px;
+    }
+    
+    .search-section {
+        padding: 25px 20px;
+    }
+    
+    .search-section h2 {
+        font-size: 1.4rem;
+        margin-bottom: 15px;
+    }
+    
+    .search-form {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .search-form input[type="text"] {
+        width: 100%;
+        font-size: 16px; /* Prevents zoom on iOS */
+        padding: 15px;
+    }
+    
+    .search-form button {
+        width: 100%;
+        padding: 15px;
+        font-size: 1.1rem;
+    }
+    
+    .video-info {
+        margin-top: 20px;
+    }
+    
+    .video-header {
+        flex-direction: column;
+        gap: 20px;
+        padding: 25px 20px;
+        text-align: center;
+    }
+    
+    .video-header img {
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+        margin: 0 auto;
+    }
+    
+    .video-details h3 {
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+    }
+    
+    .video-details p {
+        font-size: 1rem;
+    }
+    
+    .formats-section {
+        padding: 25px 20px;
+    }
+    
+    .formats-section h4 {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    
+    .format-item {
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px;
+        text-align: center;
+    }
+    
+    .format-info {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+    }
+    
+    .format-details {
+        text-align: center;
+    }
+    
+    .format-details h5 {
+        font-size: 1.1rem;
+        margin-bottom: 8px;
+    }
+    
+    .format-details p {
+        font-size: 0.9rem;
+        margin-bottom: 5px;
+    }
+    
+    .download-btn {
+        width: 100%;
+        padding: 12px 20px;
+        font-size: 1rem;
+    }
+    
+    .loading {
+        padding: 30px 20px;
+    }
+    
+    .loading p {
+        font-size: 1rem;
+        margin-top: 15px;
+    }
+    
+    .error, .success {
+        padding: 15px;
+        margin: 20px 0;
+        font-size: 1rem;
+    }
+    
+    .footer p {
+        font-size: 0.9rem;
+        padding: 20px;
+    }
+}
+
+/* Extra Small Devices */
+@media (max-width: 480px) {
+    .container {
+        padding: 15px 10px;
+    }
+    
+    .header h1 {
+        font-size: 1.6rem;
+    }
+    
+    .search-section {
+        padding: 20px 15px;
+    }
+    
+    .search-form input[type="text"] {
+        padding: 12px;
+        font-size: 16px;
+    }
+    
+    .search-form button {
+        padding: 12px;
+        font-size: 1rem;
+    }
+    
+    .video-header {
+        padding: 20px 15px;
+    }
+    
+    .video-header img {
+        max-width: 250px;
+    }
+    
+    .formats-section {
+        padding: 20px 15px;
+    }
+    
+    .format-item {
+        padding: 15px;
+    }
+    
+    .quality {
+        font-size: 0.8rem;
+        padding: 4px 8px;
+    }
+    
+    .download-btn {
+        padding: 10px 16px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Landscape Orientation for Mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+    .video-header {
+        flex-direction: row;
+        gap: 15px;
+        padding: 20px;
+    }
+    
+    .video-header img {
+        width: 150px;
+        height: 100px;
+    }
+    
+    .video-details h3 {
+        font-size: 1.2rem;
+    }
+    
+    .video-details p {
+        font-size: 0.9rem;
+    }
+}
+
+/* Tablet Devices */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .container {
+        max-width: 90%;
+        padding: 30px 25px;
+    }
+    
+    .video-header img {
+        width: 180px;
+        height: 120px;
+    }
+    
+    .format-item {
+        padding: 20px;
+    }
+}
+
+/* High DPI Displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .search-form input[type="text"] {
+        border-width: 0.5px;
+    }
+    
+    .format-item {
+        border-width: 0.5px;
+    }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .download-btn {
+        min-height: 44px; /* Minimum touch target size */
+    }
+    
+    .search-form input[type="text"] {
+        min-height: 44px;
+    }
+    
+    .search-form button {
+        min-height: 44px;
+    }
+    
+    .format-item:hover {
+        transform: none; /* Remove hover effects on touch devices */
+    }
+}
+
+/* Mobile-First Improvements */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Prevent horizontal scroll on mobile */
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+/* Better touch targets for mobile */
+button, input, .download-btn, .format-item {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+/* Smooth scrolling for mobile */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Better focus states for mobile */
+button:focus, input:focus {
+    outline: 2px solid #007bff;
+    outline-offset: 2px;
+}
+
+/* Mobile-specific animations */
+@media (max-width: 768px) {
+    .format-item {
+        transition: all 0.3s ease;
+    }
+    
+    .format-item:active {
+        transform: scale(0.98);
+        background-color: #e8e8e8;
+    }
+    
+    .download-btn:active {
+        transform: scale(0.95);
+    }
+    
+    /* Better loading animation for mobile */
+    .loader {
+        transform: scale(0.8);
+    }
+    
+    /* Improved spacing for mobile */
+    .container > * + * {
+        margin-top: 20px;
+    }
+    
+    /* Better button spacing */
+    .search-form button {
+        margin-top: 10px;
+    }
+}
+
+/* iOS Safari specific fixes */
+@supports (-webkit-touch-callout: none) {
+    .search-form input[type="text"] {
+        font-size: 16px;
+        -webkit-appearance: none;
+        border-radius: 8px;
+    }
+    
+    .search-form button {
+        -webkit-appearance: none;
+        border-radius: 8px;
+    }
+}
+
+/* Android Chrome specific fixes */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+    .search-form input[type="text"] {
+        border-radius: 8px;
+    }
+    
+    .search-form button {
+        border-radius: 8px;
+    }
+}
